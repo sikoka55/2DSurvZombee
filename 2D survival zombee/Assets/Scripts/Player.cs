@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,15 +15,19 @@ public class Player : MonoBehaviour
     public Transform shootPoint;
     public Image healthImg;
     public Image EXPImg;
+    public TMP_Text exp_countText;
+    public TMP_Text hp_countText;
+    public TMP_Text curLevelText;
 
     [Header("Stats")]
     public float speed;
     public float speedRotation;
-
     public float healthMax;
     public float health;
     public float exp;
     public float exp_max;
+    public int level;
+    public float expCoef;
 
     public bool isAtacked;
 
@@ -34,13 +39,15 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        UIRefresh();
         animator = GetComponent<Animator>();
     }
+
+
 
     private void FixedUpdate()
     {
         Animating();
-        Health();
         Moving_Rotating();
         Shooting();
     }
@@ -93,12 +100,11 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+
+        UIRefresh();
     }
 
-    public void Health()
-    {
-        healthImg.fillAmount = health / healthMax;
-    }
+
 
     public void Animating()
     {
@@ -111,6 +117,34 @@ public class Player : MonoBehaviour
             animator.SetBool("isAtacked", false);
         }
         
+    }
+
+    public void UIRefresh()
+    {
+        exp = Mathf.Clamp(exp, 0, exp_max);
+        health = Mathf.Clamp(health, 0, healthMax);
+
+        healthImg.fillAmount = health / healthMax;
+        EXPImg.fillAmount = exp / exp_max;
+
+        exp_countText.text = (int)exp + "/" + (int)exp_max;
+        hp_countText.text = (int)health + "/" + (int)healthMax;
+
+        curLevelText.text = level.ToString();
+    }
+
+    public void ExpChange(float count)
+    {
+        exp += count;
+
+        if (exp >= exp_max)
+        {
+            level++;
+            exp = 0;
+            exp_max *= expCoef;
+        }
+
+        UIRefresh();
     }
  }
 
