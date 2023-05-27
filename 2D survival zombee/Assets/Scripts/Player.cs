@@ -48,16 +48,24 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Animating();
-        Moving_Rotating();
+        Moving();
+        Shooting();
+        Rotating();
         Shooting();
     }
 
 
 
-        private void Moving_Rotating()
+    private void Moving()
     {
         transform.position = new Vector3(transform.position.x + SimpleInput.GetAxis("Horizontal2") * speed,
                                          transform.position.y + SimpleInput.GetAxis("Vertical2") * speed, 0);
+
+    }
+
+    private void Rotating()
+    {
+
 
         float rotationInputX = SimpleInput.GetAxis("Horizontal2");
         float rotationInputY = SimpleInput.GetAxis("Vertical2");
@@ -68,11 +76,10 @@ public class Player : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0f, 0f, rotationAngle);
             transform.rotation = rotation;
         }
-
     }
 
     private void Shooting()
-    {
+    { 
         if (timer > 0)
         {
             timer--;
@@ -81,14 +88,15 @@ public class Player : MonoBehaviour
         else
         {
             timer = timerMax;
+            
 
-            GameObject newBullet = Instantiate(bulletPrefab, shootPoint.transform.position, Quaternion.identity, null);
-            newBullet.GetComponent<Bullet>().target = shootPoint.transform;
+            GameObject newBullet = Instantiate(bulletPrefab, shootPoint.transform.position, transform.rotation, null);
+            newBullet.GetComponent<Bullet>().target = shootPoint;
             newBullet.GetComponent<Bullet>().damage = damage;
-
         }
-        
-     }
+
+    } 
+     
 
     public void Damage(float damage)
     {
