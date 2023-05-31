@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  damageTimer: 1.5
+  attackInterval: 2
 --- !u!50 &7977356734616027929
 Rigidbody2D:
   serializedVersion: 4

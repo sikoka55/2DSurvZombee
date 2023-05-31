@@ -13,10 +13,9 @@ public class Player : MonoBehaviour
     public Transform target;
     public GameObject bulletPrefab;
     public Transform shootPoint;
+
     public Image healthImg;
     public Image EXPImg;
-    public TMP_Text exp_countText;
-    public TMP_Text hp_countText;
     public TMP_Text curLevelText;
 
     [Header("Stats")]
@@ -29,7 +28,7 @@ public class Player : MonoBehaviour
     public int level;
     public float expCoef;
 
-    public bool isAtacked;
+    public bool isAttacked;
 
 
     [Header("Shooting")]
@@ -67,8 +66,8 @@ public class Player : MonoBehaviour
     {
 
 
-        float rotationInputX = SimpleInput.GetAxis("Horizontal2");
-        float rotationInputY = SimpleInput.GetAxis("Vertical2");
+        float rotationInputX = SimpleInput.GetAxis("Horizontal3");
+        float rotationInputY = SimpleInput.GetAxis("Vertical3");
 
         if (Mathf.Abs(rotationInputX) > 0.1f || Mathf.Abs(rotationInputY) > 0.1f)
         {
@@ -116,7 +115,7 @@ public class Player : MonoBehaviour
 
     public void Animating()
     {
-        if (isAtacked)
+        if (isAttacked)
         {
             animator.SetBool("isAtacked", true);
         }
@@ -134,9 +133,6 @@ public class Player : MonoBehaviour
 
         healthImg.fillAmount = health / healthMax;
         EXPImg.fillAmount = exp / exp_max;
-
-        exp_countText.text = (int)exp + "/" + (int)exp_max;
-        hp_countText.text = (int)health + "/" + (int)healthMax;
 
         curLevelText.text = level.ToString();
     }
