@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7080266273473842363}
   - component: {fileID: 4252180636225770001}
   - component: {fileID: 2148243873239846601}
+  - component: {fileID: 8716632631712053367}
   m_Layer: 5
-  m_Name: Upgr_attack
+  m_Name: Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,6 +81,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8716632631712053367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873837521976571257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: befea8cbbd8357c42a924489c87b9c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2243751704651634528
 GameObject:
   m_ObjectHideFlags: 0

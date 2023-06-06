@@ -8,6 +8,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Animator animator;
+    private UpgController upg;
 
     [Header("Objects")]
     public Transform target;
@@ -18,15 +19,21 @@ public class Player : MonoBehaviour
     public Image EXPImg;
     public TMP_Text curLevelText;
 
+    public GameObject upgradePanel;
+
     [Header("Stats")]
     public float speed;
     public float speedRotation;
+
     public float healthMax;
     public float health;
+
     public float exp;
     public float exp_max;
-    public int level;
     public float expCoef;
+    public float expUpgrade;
+    public int level;
+    
 
     public bool isAttacked;
 
@@ -35,11 +42,14 @@ public class Player : MonoBehaviour
     public float timer;
     public float timerMax;
     public float damage;
+    public float criticalChance;
+    public float criticalRate;
 
     private void Start()
     {
         UIRefresh();
         animator = GetComponent<Animator>();
+        upg = upgradePanel.GetComponent<UpgController>(); 
     }
 
 
@@ -66,8 +76,8 @@ public class Player : MonoBehaviour
     {
 
 
-        float rotationInputX = SimpleInput.GetAxis("Horizontal3");
-        float rotationInputY = SimpleInput.GetAxis("Vertical3");
+        float rotationInputX = SimpleInput.GetAxis("Horizontal2");
+        float rotationInputY = SimpleInput.GetAxis("Vertical2");
 
         if (Mathf.Abs(rotationInputX) > 0.1f || Mathf.Abs(rotationInputY) > 0.1f)
         {
@@ -92,6 +102,10 @@ public class Player : MonoBehaviour
             GameObject newBullet = Instantiate(bulletPrefab, shootPoint.transform.position, transform.rotation, null);
             newBullet.GetComponent<Bullet>().target = shootPoint;
             newBullet.GetComponent<Bullet>().damage = damage;
+
+            //fix for buttns. Cntrl+C from bullet to Player
+            newBullet.GetComponent<Bullet>().criticalHitChance = criticalChance;
+            newBullet.GetComponent<Bullet>().criticalHitChance = criticalRate;
         }
 
     } 
@@ -144,8 +158,14 @@ public class Player : MonoBehaviour
         if (exp >= exp_max)
         {
             level++;
+
             exp = 0;
             exp_max *= expCoef;
+
+            Time.timeScale = 0;
+            upgradePanel.SetActive(true);
+            upg.ShuffleAndShowUpgrades();
+            
         }
 
         UIRefresh();

@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   shootForce: 12
-  criticalHitChance: 36.5
+  criticalHitChance: 15
   criticalHitRate: 1.3
   damage: 30
 --- !u!58 &-6258096640179583720

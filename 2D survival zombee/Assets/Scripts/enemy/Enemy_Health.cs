@@ -10,6 +10,7 @@ public class Enemy_Health : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        exp = player.expUpgrade;
     }
 
     public void Damage (float damage)
