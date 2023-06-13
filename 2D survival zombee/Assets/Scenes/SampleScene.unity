@@ -35881,9 +35881,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyContainer: {fileID: 596169902}
-  spawnTimer: 5
+  spawnTimer: 3
   inWave: 0
-  inWaveMax: 100
+  inWaveMax: 500
   enemyPrefab: {fileID: 3637774408107275916, guid: 79e662dbf31f78e4a990f4d4b8ba0403, type: 3}
   topLeft: {fileID: 1768738970}
   downRight: {fileID: 612002711}
