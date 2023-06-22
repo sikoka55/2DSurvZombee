@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public float exp;
     public float exp_max;
     public float expCoef;
-    public float expUpgrade;
+    public float expGain;
     public int level;
     
 

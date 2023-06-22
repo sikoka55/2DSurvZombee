@@ -67,8 +67,8 @@ public class UpgController : MonoBehaviour
 
         else if (index == 5)
         {
-            float bonus = player.expUpgrade / 100 * upgrades[index].bonuses[upgrades[index].level];
-            player.expUpgrade += bonus;
+            float bonus = player.expGain / 100 * upgrades[index].bonuses[upgrades[index].level];
+            player.expGain += bonus;
         }
 
         upgrades[index].level++;
